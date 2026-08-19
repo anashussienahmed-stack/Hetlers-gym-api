@@ -31,6 +31,7 @@ export const signup = async (req:Request,res:Response)=>{
     res.status(201).json({msg:"Created Successfully"})
 
  } catch(err){
+      console.log("SignUp err",err)
       res.status(500).json({error:"Server error"})
  }
 
