@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 3000 // عشان السيرفر يقرا الب
 app.use(express.json()) // to read the data from req.body
 app.use(cookieParser()); // to read the cookies from req.cookies
 app.use("/api/bookings", bookingRoutes);
+
 connectDB() // to connect mongoDB with mongoose بدء الاتصال بالداتا بيز
 
 
