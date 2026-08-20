@@ -1,7 +1,7 @@
 
 import { Request,Response,NextFunction } from "express"
 import { User } from "../models/user" //the model to deal with MongoDB -> ليتعامل مع قاعده البيانات (سواء انشاء او تعديل او غيره)
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs" // لتشفر الباس
 import generateToken from "../other/generateToken"
 //////////////////////////////////////////////////////////////
 export const signup = async (req:Request,res:Response)=>{
@@ -11,8 +11,6 @@ export const signup = async (req:Request,res:Response)=>{
    {
      const { fullname , email , password, role} = req.body
 
-     if(!fullname || !email || !password)
-         return res.status(400).json({message:"Fullname & email & password are required"})
 
      const user = await User.findOne({email:email}) // or ({email})..the fist email is the field in MongoDB , the second is the variable that we recieved from req.body
 
@@ -20,6 +18,7 @@ export const signup = async (req:Request,res:Response)=>{
          return res.status(400).json({msg:"This User is already exists"})
 
      const password_with_hash = await bcrypt.hash(password,10)
+
 
      await User.create({
          fullname:fullname,  //or fullname
