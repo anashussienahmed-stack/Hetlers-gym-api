@@ -1,0 +1,5 @@
+.env 
+# عشان الاسرار متطلعش
+node_modules/ 
+#مجلد المكتبات المتحمله لانه كبير
+# use npm install to download all libraries from package.json
