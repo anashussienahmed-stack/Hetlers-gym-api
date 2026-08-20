@@ -7,7 +7,7 @@ const validateSignup = (req:Request,res:Response ,next:NextFunction)=>
     const {fullname,email,password } = req.body
 
     if (!fullname || !email || !password)
-        return res.status(400).json({err:"fullname and email and password are rerquired"})
+        return res.status(400).json({err:"fullname and email and password are required"})
 
 
 

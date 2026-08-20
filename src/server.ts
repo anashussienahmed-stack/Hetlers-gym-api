@@ -3,7 +3,7 @@ import express from "express"
 import cookieParser from "cookie-parser"; // عشان نقرا الكوكيز
 import {connectDB} from "./config/db"
 
-import { loggingMiddleware } from "./middlewares/loggingmiddleware"; // bonus logging middleware
+import { loggingMiddleware } from "./middlewares/loggingMiddleware"; // bonus logging middleware
 //import swagger
 
 import authRoutes from "./routes/authRoutes"
