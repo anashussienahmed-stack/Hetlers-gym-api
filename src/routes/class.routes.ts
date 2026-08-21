@@ -1,13 +1,14 @@
 import { Router } from "express"
+import { protect, restrictTo } from "../middlewares/auth";
 import { createClass , updateClass , deleteClass , getClasses , getClassById } from "../controllers/class.controller"
 import { validateCreateClass , validateUpdateClass } from "../middlewares/class.validation"
 
 const router = Router()
 
-router.get("/" , getClasses)
-router.get("/:id" , getClassById)
-router.post("/" , validateCreateClass , createClass)
-router.patch("/:id" , validateUpdateClass , updateClass)
-router.delete("/:id" , deleteClass)
+router.get("/" , protect , restrictTo("Trainer"), getClasses)
+router.get("/:id" , protect , restrictTo("Trainer") , getClassById)
+router.post("/" , protect , restrictTo("Trainer") , validateCreateClass , createClass)
+router.patch("/:id" , protect , restrictTo("Trainer") , validateUpdateClass , updateClass)
+router.delete("/:id" , protect , restrictTo("Trainer") , deleteClass)
 
 export default router

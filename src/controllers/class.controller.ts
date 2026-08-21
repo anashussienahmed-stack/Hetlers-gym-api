@@ -1,7 +1,7 @@
 import {Request , Response } from "express"
 import {ClassSession} from "../models/ClassSession"
 import { Booking } from "../models/Booking";
-import { User } from "../models/User";  
+import { User } from "../models/user";  
 
 export const createClass = async (req : Request , res : Response ) => {
     try {
