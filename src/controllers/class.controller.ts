@@ -1,9 +1,9 @@
-import {Request , Response , NextFunction} from "express"
+import {Request , Response } from "express"
 import {ClassSession} from "../models/ClassSession"
-//we need to import bookings model
-//we need to emport user model
+import { Booking } from "../models/Booking";
+import { User } from "../models/User";  
 
-export const createClass = async (req : Request , res : Response , next : NextFunction) => {
+export const createClass = async (req : Request , res : Response ) => {
     try {
         const {title , timeSlot , capacity} = req.body
         const trainerId = req.user.id
@@ -16,15 +16,17 @@ export const createClass = async (req : Request , res : Response , next : NextFu
         })
 
         return res.status(201).json({
-            massage : "Class created successfully",
+            message : "Class created successfully",
             classSession
         })
     }catch(error){
-        next(error)
+        return res.status(500).json({
+            message : "Server error"
+        })
     }
 }
 
-export const updateClass = async ( req : Request , res : Response , next : NextFunction) => {
+export const updateClass = async ( req : Request , res : Response ) => {
     try{
         const {id} = req.params
         const {title , timeSlot , capacity} = req.body
@@ -55,11 +57,13 @@ export const updateClass = async ( req : Request , res : Response , next : NextF
             classSession
         })
     }catch(error){
-        next(error)
+        return res.status(500).json({
+            message : "Server error"
+        })
     }
 }
 
-export const deleteClass = async (req : Request , res : Response , next : NextFunction) => {
+export const deleteClass = async (req : Request , res : Response ) => {
     try{
         const {id} = req.params
         const trainerId = req.user.id
@@ -84,8 +88,8 @@ export const deleteClass = async (req : Request , res : Response , next : NextFu
         })
 
         if (existingBooking){
-            return res.status(404).json({
-                message : "this class is already booked"
+            return res.status(409).json({
+                message : "Cannot delete a class with active bookings"
             })
         }
         await ClassSession.findByIdAndDelete(id)
@@ -95,28 +99,35 @@ export const deleteClass = async (req : Request , res : Response , next : NextFu
         })
 
     }catch(error){
-        next(error)
+        return res.status(500).json({
+            message : "Server error"
+        })
     }
 
 } 
 
-export const getClasses = async ( req : Request , res : Response , next : NextFunction ) => {
+export const getClasses = async ( req : Request , res : Response ) => {
   try {
     const {title , trainer , date , available} = req.query
 
     const filter : any = {}
 
     if (title){
-        filter.title = title
+        filter.title = {
+            $regex: title,
+            $options: "i"
+        }
     }
 
     if (trainer) {
       const user = await User.findOne({
-        fullname: trainer
+        fullname: { $regex: trainer as string, $options: "i" }
       })
 
       if (user) {
         filter.trainer = user._id
+      }else{
+        return res.status(200).json({classes : [] })
       }
     }
 
@@ -159,7 +170,32 @@ export const getClasses = async ( req : Request , res : Response , next : NextFu
       classes,
     })
   } catch (error) {
-    next(error)
+    return res.status(500).json({
+            message : "Server error"
+        })
   }
+}
+
+export const getClassById = async (req : Request , res : Response) => {
+    try{
+        const {id} = req.params
+
+        const classSession = await ClassSession.findById(id).populate(
+            "trainer",
+            "fullname"
+        )
+
+        if (!classSession){
+            return res.status(404).json({
+                message : "Class not found "
+            })
+        }
+
+        return res.status(200).json(classSession)
+    }catch(error){
+        return res.status(500).json({
+            message : "Server error"
+        })
+    }
 }
 

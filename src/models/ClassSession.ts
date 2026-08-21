@@ -7,7 +7,7 @@ export interface ClassSession{
   capacity: number;
 }
 
-const classSessionSchema = new Schema(
+const classSessionSchema = new Schema<ClassSession>(
   {
     title: {
       type: String,
@@ -16,8 +16,8 @@ const classSessionSchema = new Schema(
 
     trainer: {
       type: Schema.Types.ObjectId,
-      ref: "User", // takes the id from the users where he is already have his id so the user dont have to write the id when
-                    // he creates a session
+      ref: "User", // takes the id from the users where he is already have his id so the user dont have to write the id 
+                    // when he creates a session
       required: true,
     },
 
@@ -34,4 +34,4 @@ const classSessionSchema = new Schema(
   }
 );
 
-export const ClassSession = mongoose.model("ClassSession",classSessionSchema);
+export const ClassSession = mongoose.model<ClassSession>("ClassSession",classSessionSchema)
