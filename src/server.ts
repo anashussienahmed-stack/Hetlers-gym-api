@@ -9,7 +9,7 @@ import classRoutes from "./routes/class.routes.js";
 
 //import swagger
 
-import authRoutes from "./routes/authRoutes"
+import authRoutes from "./routes/authRoutes.js"
 //import routes
 //
 //
