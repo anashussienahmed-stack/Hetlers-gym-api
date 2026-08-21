@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { protect, restrictTo } from "../middlewares/auth";
+import { protect, restrictTo } from "../middlewares/auth.js";
 import {
   createBooking,
   cancelBooking,

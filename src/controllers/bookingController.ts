@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Booking } from "../models/Booking";
-import { ClassSession } from "../models/ClassSession";
+import { Booking } from "../models/Booking.js";
+import { ClassSession } from "../models/ClassSession.js";
 
 //////////////////////////////////////////////////////////////
 // POST /api/bookings   (Member only)

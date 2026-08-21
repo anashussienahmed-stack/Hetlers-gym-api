@@ -1,11 +1,11 @@
 import "dotenv/config" //to read from .env
 import express from "express"
 import cookieParser from "cookie-parser"; // عشان نقرا الكوكيز
-import {connectDB} from "./config/db"
+import {connectDB} from "./config/db.js"
 
-import bookingRoutes from "./routes/bookingRoutes"
-import { loggingMiddleware } from "./middlewares/loggingMiddleware"; // bonus logging middleware
-import classRoutes from "./routes/class.routes";
+import bookingRoutes from "./routes/bookingRoutes.js"
+import { loggingMiddleware } from "./middlewares/loggingMiddleware.js"; // bonus logging middleware
+import classRoutes from "./routes/class.routes.js";
 
 //import swagger
 
