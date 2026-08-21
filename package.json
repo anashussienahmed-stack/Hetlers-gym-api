@@ -22,6 +22,8 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
     "dev": "tsx src/server.ts"
   }
 }
