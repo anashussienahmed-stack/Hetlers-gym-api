@@ -5,7 +5,7 @@ import { validateCreateClass , validateUpdateClass } from "../middlewares/class.
 
 const router = Router()
 
-router.get("/" , protect , restrictTo("Trainer"), getClasses)
+router.get("/" , protect , restrictTo("Member"), getClasses)
 router.get("/:id" , protect , restrictTo("Trainer") , getClassById)
 router.post("/" , protect , restrictTo("Trainer") , validateCreateClass , createClass)
 router.patch("/:id" , protect , restrictTo("Trainer") , validateUpdateClass , updateClass)
