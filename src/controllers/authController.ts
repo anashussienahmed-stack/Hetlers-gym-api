@@ -62,7 +62,7 @@ try
 //cookies take time in milli
     res.cookie("token",token,{httpOnly:true,maxAge:maxAge_Milli})
 
-    return res.status(200).json( {msg:"Login Successfull"} )
+    return res.status(200).json( {msg:"Login Successfull",token} )
 
  } catch (err) { 
     res.status(500).json({msg:"Server error"})
