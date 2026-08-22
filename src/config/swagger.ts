@@ -15,15 +15,15 @@ const options: swaggerJsdoc.Options = {
       },
     },
     
-
     servers: [
+      {
+       url: 'https://focused-acceptance-production-26c4.up.railway.app', // رابط ريلواي
+        description: 'Production Server' ,
+      },
+      // when making refresh for swagger we want to be in Railway not localhost/3000
       {
         url: 'http://localhost:3000',
         description: 'Local Development Server',
-      },
-      {
-        url: 'https://focused-acceptance-production-26c4.up.railway.app', // رابط ريلواي
-        description: 'Production Server',
       },
     ],
     
