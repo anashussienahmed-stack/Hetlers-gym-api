@@ -1,8 +1,8 @@
 
 import { Request,Response,NextFunction } from "express"
-import { User } from "../models/user" //the model to deal with MongoDB -> ليتعامل مع قاعده البيانات (سواء انشاء او تعديل او غيره)
+import { User } from "../models/user.js" //the model to deal with MongoDB -> ليتعامل مع قاعده البيانات (سواء انشاء او تعديل او غيره)
 import bcrypt from "bcryptjs" // لتشفر الباس
-import generateToken from "../other/generateToken"
+import generateToken from "../other/generateToken.js"
 //////////////////////////////////////////////////////////////
 export const signup = async (req:Request,res:Response)=>{
  

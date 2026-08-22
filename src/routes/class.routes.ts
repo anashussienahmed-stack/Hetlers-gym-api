@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router } from "express"
 import { protect, restrictTo } from "../middlewares/auth.js";
-import { createClass, updateClass, deleteClass, getClasses, getClassById } from "../controllers/class.controller.js";
-import { validateCreateClass, validateUpdateClass } from "../middlewares/class.validation.js";
+import { createClass , updateClass , deleteClass , getClasses , getClassById } from "../controllers/class.controller.js"
+import { validateCreateClass , validateUpdateClass } from "../middlewares/class.validation.js"
 
 const router = Router();
 
