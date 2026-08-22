@@ -22,7 +22,7 @@ import authRoutes from "./routes/authRoutes.js"
 const app = express()
 const PORT = process.env.PORT || 3000 // عشان السيرفر يقرا البورت الخاص ب railway
 
-// Add this right before your API routes:
+
 
 
 app.use(express.json()) // to read the data from req.body
