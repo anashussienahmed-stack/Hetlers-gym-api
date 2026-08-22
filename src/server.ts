@@ -8,7 +8,7 @@ import { loggingMiddleware } from "./middlewares/loggingMiddleware.js"; // bonus
 import classRoutes from "./routes/class.routes.js";
 
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./config/swagger"; // adjust path if needed
+import { swaggerSpec } from "./config/swagger.js"; // adjust path if needed -> done 
 
 
 //import swagger
