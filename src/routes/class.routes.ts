@@ -30,19 +30,46 @@ const router = Router();
  *           description: أقصى عدد للمشتركين (رقم موجب)
  *           example: 20
  */
-
 /**
  * @swagger
  * /api/classes:
  *   get:
- *     summary: عرض جميع الحصص 
+ *     summary: Show all sessions (Search & filter)
  *     tags: [Class Sessions]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Search by title like (yoga)
+ *       - in: query
+ *         name: trainer
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: search by trainer name like(Anas)
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: false
+ *         description: filtering by date like (2027-09-01)
+ *       - in: query
+ *         name: available
+ *         schema:
+ *           type: boolean
+ *         required: false
+ *         description: filtering by available sessions 
  *     responses:
  *       200:
- *         description: قائمة الحصص
- * 
+ *         description: تم جلب الحصص بنجاح
+ *       500:
+ *         description: خطأ في الخادم
+ *
  *   post:
  *     summary: إنشاء حصة جديدة (للمدرب فقط)
  *     tags: [Class Sessions]
